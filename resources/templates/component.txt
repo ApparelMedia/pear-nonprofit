@@ -1,7 +1,0 @@
-import React, {Component} from 'react';
-
-class {{name}} extends Component {
-
-}
-
-export default {{name}}

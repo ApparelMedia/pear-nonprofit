@@ -1,7 +1,0 @@
-const {{name}} = (state, action) => {
-    let newState;
-
-    return newState;
-}
-
-export default {{name}}

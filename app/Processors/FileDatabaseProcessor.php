@@ -52,7 +52,7 @@ class FileDatabaseProcessor
                 . $rowValues[3] . ','
                 . $rowValues[4] . ','
                 . $rowValues[5] . ','
-                . $this->getVectorExpression([$rowValues[1], $rowValues[2], $rowValues[0]], $pdo) . ')';
+                . $this->getVectorExpression([$rowValues[1], $rowValues[2], $rowValues[3], $rowValues[0]], $pdo) . ')';
 
             $pdo->exec($processedSql);
             if (is_callable($afterEach)) {

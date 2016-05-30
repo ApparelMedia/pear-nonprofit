@@ -44,6 +44,8 @@ class DataReloadNonprofitTable extends Command
     {
         if ($this->confirm('This will truncate the current table! Do you wish to continue? [y|N]')) {
             $this->info('truncating nonprofits table');
+            $connection = app('db')->connection();
+            $connection->disableQueryLog();
             app('db')->table('nonprofits')->truncate();
 
             $this->info('importing data from ' . $this->filePath);
@@ -51,7 +53,7 @@ class DataReloadNonprofitTable extends Command
             $count = $this->counter->execute() / 1000;
             $bar = $this->output->createProgressBar($count);
 
-            $csv = new \App\Processors\FileDatabaseProcessor($this->filePath, app('db')->connection()->getPDO());
+            $csv = new \App\Processors\FileDatabaseProcessor($this->filePath, $connection->getPDO());
             $csv->execute(function ($i) use ($bar) {
                 if ($i % 1000 === 0) {
                     $bar->advance();

@@ -1,18 +1,39 @@
-## Pear Nonprofit Org Search
+## Pear Nonprofit Org Search Proof-of-concept
+
 ### Features
 1. Automated one-command update from IRS website
-2. Super fast name search using Postgres Full-text search features
+2. Super fast name search (with city and state) using Postgres Full-text search features
 3. Restful API
 
 ### Getting Started (with Vagrant Environment)
 1. Clone this repo to your local computer
-2. Edit your Soil.yaml file: add site, and a database `nonprofit_local` (or whatever name you see fit)
-3. Add your local site url to `./etc/hosts`
+2. Edit your Soil.yaml file: add site (e.g `nonprofit.app`), and a database `nonprofit_local` (or whatever name you see fit)
+3. Add the local site url to `./etc/hosts`
 4. `composer install` in the VM
 5. In `pear-nonprofit` directory, duplicate `.env.sample` to `.env`
 6. In the `.env` file, set `APP_KEY` to a random 32-character alpha-numeric string (no quotes)
 7. Make sure `DB_CONNECTION` is set to `pgsql` as we'll need to use Postgres
 8. Run `php artisan migrate`
-9. Run `php artisan data:downloadFile`, This will download the zip file from the IRS site
-10. Run `php artian data:reloadTable`, This will load the csv file to the postgres table
+9. Run `php artisan data:downloadFile`, This will download the zip file from the IRS site (around a few minutes)
+10. Run `php artian data:reloadTable`, This will load the csv file to the postgres table (watch the progress bar) if the process is "Killed" before it reached 100%, please see "Note on Memory Usage" below.
 
+### Web Interface
+If you added the site, then you can go to the url to see a very simple search interface.
+The app is written in Redux and React so you can download the chrome extension [Redux Devtools](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd), and play with the state and playback.
+
+### To Use the API
+Currently there is only one working path: `/api/nonprofits/search?q=[searchstring]`
+Once you have completed the steps in "Getting Started", you can test the route in postman.
+
+### Note on Memory Usage  
+Because processing a million rows of data is pretty memory-intensive, it's possible that in the middle of the `data:reloadTable` command, the VM will "kill" the process due to out-of-memory.  
+To fix the problem, you would need to disable xdebug (which is by default enabled)  
+1. `sudo vim /etc/php5/mods-available/xdebug.ini`  
+2. Add a semicolon to the first line so it becomes `;zend_extension=xdebug.so`  
+3. save and quit vim  
+When you run the command again, it should work.
+
+### TODO
+* Add CORS
+* Add route to web interface (which enables back-button)
+* Make web interface pretty
