@@ -1,13 +1,13 @@
 ## Pear Nonprofit Org Search Proof-of-concept
 
 ### Features
-1. Automated one-command update from IRS website
+1. Automated one-command database update from IRS website
 2. Super fast name search (with city and state) using Postgres Full-text search features
 3. Restful API
 
-### Getting Started (with Vagrant Environment)
+### Getting Started (with the Soil Vagrant Environment)
 1. Clone this repo to your local computer
-2. Edit your Soil.yaml file: add site (e.g `nonprofit.app`), and a database `nonprofit_local` (or whatever name you see fit)
+2. Edit your Soil.yaml file: add site (e.g `nonprofit.app`), and a database `nonprofit_local` (or whatever name you choose)
 3. Add the local site url to `./etc/hosts`
 4. `composer install` in the VM
 5. In `pear-nonprofit` directory, duplicate `.env.sample` to `.env`
@@ -29,7 +29,7 @@ Once you have completed the steps in "Getting Started", you can test the route i
 Because processing a million rows of data is pretty memory-intensive, it's possible that in the middle of the `data:reloadTable` command, the VM will "kill" the process due to out-of-memory.  
 To fix the problem, you would need to disable xdebug (which is by default enabled)  
 1. `sudo vim /etc/php5/mods-available/xdebug.ini`  
-2. Add a semicolon to the first line so it becomes `;zend_extension=xdebug.so`  
+2. Add a semicolon to the beginning of first line so it becomes `;zend_extension=xdebug.so`  
 3. save and quit vim  
 When you run the command again, it should work.
 
