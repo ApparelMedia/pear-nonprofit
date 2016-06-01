@@ -4,7 +4,7 @@
     <title>Pear Nonprofit Search</title>
 </head>
 <body>
-<div id="app" />
-<script src="js/bundle.js" type="text/javascript"></script>
+    <h1>Welcome to Nonprofit Search</h1>
+    <p>Nice API Documentation coming soon</p>
 </body>
 </html>

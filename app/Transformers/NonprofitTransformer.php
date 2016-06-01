@@ -17,8 +17,6 @@ class NonprofitTransformer extends TransformerAbstract
             'state' => $org->state,
             'country' => $org->country,
             'deductibility_status_code' => $codes,
-            'created_at' => $org->created_at ? $org->created_at->format('c') : null,
-            'updated_at' => $org->updated_at ? $org->updated_at->format('c') : null,
         ];
     }
 }

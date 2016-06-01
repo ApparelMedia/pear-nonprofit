@@ -1,4 +1,4 @@
-## Pear Nonprofit Org Search Proof-of-concept
+## Pear Nonprofit Org Search API Proof-of-concept
 
 ### Features
 1. Automated one-command database update from IRS website
@@ -18,22 +18,20 @@
 10. Run `php artian data:reloadTable`, This will load the csv file to the postgres table (watch the progress bar) if the process is "Killed" before it reached 100%, please see "Note on Memory Usage" below.
 
 ### Web Interface
-If you added the site, then you can go to the url to see a very simple search interface.
-The app is written in Redux and React so you can download the chrome extension [Redux Devtools](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd), and play with the state and playback.
+I have moved the web interface to a [separate repo](https://github.com/ApparelMedia/pear-nonprofit-web), to keep this project as a pure API service.
 
 ### To Use the API
 Currently there is only one working path: `/api/nonprofits/search?q=[searchstring]`
 Once you have completed the steps in "Getting Started", you can test the route in postman.
 
-### Note on Memory Usage  
-Because processing a million rows of data is pretty memory-intensive, it's possible that in the middle of the `data:reloadTable` command, the VM will "kill" the process due to out-of-memory.  
-To fix the problem, you would need to disable xdebug (which is by default enabled)  
-1. `sudo vim /etc/php5/mods-available/xdebug.ini`  
-2. Add a semicolon to the beginning of first line so it becomes `;zend_extension=xdebug.so`  
-3. save and quit vim  
+### Note on Memory Usage
+Because processing a million rows of data is pretty memory-intensive, it's possible that in the middle of the `data:reloadTable` command, the VM will "kill" the process due to out-of-memory.
+To fix the problem, you would need to disable xdebug (which is by default enabled)
+1. `sudo vim /etc/php5/mods-available/xdebug.ini`
+2. Add a semicolon to the beginning of first line so it becomes `;zend_extension=xdebug.so`
+3. save and quit vim
 When you run the command again, it should work.
 
 ### TODO
-* Add CORS
-* Add route to web interface (which enables back-button)
-* Make web interface pretty
+* Add API Documentation
+

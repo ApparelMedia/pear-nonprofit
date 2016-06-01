@@ -18,7 +18,11 @@ $getOrgsJson = function ($orgs) {
 };
 
 $app->get('/', function () use ($app) {
-    return view('home');
+    $hotLoader = '';
+    if (env('APP_ENV') === 'local') {
+        $hotLoader = '<script src="http://nonprofit.app:3000/webpack-dev-server.js"></script>';
+    }
+    return view('home', compact('hotLoader'));
 });
 
 $app->get('/test', function () {
