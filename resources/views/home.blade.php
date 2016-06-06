@@ -83,19 +83,21 @@
 				<code>&lt; Content-Type: application/json</code><br>
 			
 			
-				<pre class="prettyprint">[
-  {
-    &#34;id&#34;: 25,
-    &#34;ein&#34;: &#34;0012343&#34;,
-    &#34;name&#34;: &#34;Chicago Art House&#34;,
-    &#34;city&#34;: &#34;Chicago&#34;,
-    &#34;state&#34;: &#34;IL&#34;,
-    &#34;deductibility_status_code&#34;: [
-      &#34;PE&#34;,
-      &#34;SOUNK&#34;
-    ]
-  }
-]</pre>
+				<pre class="prettyprint">{
+  &#34;data&#34;: [
+    {
+      &#34;id&#34;: 25,
+      &#34;ein&#34;: &#34;0012343&#34;,
+      &#34;name&#34;: &#34;Chicago Art House&#34;,
+      &#34;city&#34;: &#34;Chicago&#34;,
+      &#34;state&#34;: &#34;IL&#34;,
+      &#34;deductibility_status_code&#34;: [
+        &#34;PE&#34;,
+        &#34;SOUNK&#34;
+      ]
+    }
+  ]
+}</pre>
 			
 		</li>
 	

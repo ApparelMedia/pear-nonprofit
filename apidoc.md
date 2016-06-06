@@ -14,7 +14,8 @@ Searches nonprofits given partial names, or city, or state, or ein or any combin
       Search Query for the nonprofits
 
 + Response 200 (application/json)
-    + Attributes (array[Nonprofit])
+    + Attributes (object)
+        + data (array[Nonprofit])
 
 # Data Structures
 
