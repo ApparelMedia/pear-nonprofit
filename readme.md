@@ -1,3 +1,5 @@
+![test-status](https://codeship.com/projects/156326/status?branch=master)
+
 ## Pear Nonprofit Org Search API Proof-of-concept
 
 ### Features
@@ -34,4 +36,3 @@ When you run the command again, it should work.
 
 ### TODO
 * Add API Documentation
-
