@@ -1,269 +1,171 @@
-<?xml version="1.0"?>
-        <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <title>Nonprofit Search API</title>
-    <style type="text/css">
-        body {
-            font-family: Trebuchet MS, sans-serif;
-            font-size: 15px;
-            color: #444;
-            margin-right: 24px;
-        }
-
-        h1	{
-            font-size: 25px;
-        }
-        h2	{
-            font-size: 20px;
-        }
-        h3	{
-            font-size: 16px;
-            font-weight: bold;
-        }
-        hr	{
-            height: 1px;
-            border: 0;
-            color: #ddd;
-            background-color: #ddd;
-            display: none;
-        }
-
-        .app-desc {
-            clear: both;
-            margin-left: 20px;
-        }
-        .param-name {
-            width: 100%;
-        }
-        .license-info {
-            margin-left: 20px;
-        }
-
-        .license-url {
-            margin-left: 20px;
-        }
-
-        .model {
-            margin: 0 0 0px 20px;
-        }
-
-        .method {
-            margin-left: 20px;
-        }
-
-        .method-notes	{
-            margin: 10px 0 20px 0;
-            font-size: 90%;
-            color: #555;
-        }
-
-        pre {
-            padding: 10px;
-            margin-bottom: 2px;
-        }
-
-        .http-method {
-            text-transform: uppercase;
-        }
-
-        pre.get {
-            background-color: #0f6ab4;
-        }
-
-        pre.post {
-            background-color: #10a54a;
-        }
-
-        pre.put {
-            background-color: #c5862b;
-        }
-
-        pre.delete {
-            background-color: #a41e22;
-        }
-
-        .huge	{
-            color: #fff;
-        }
-
-        pre.example {
-            background-color: #f3f3f3;
-            padding: 10px;
-            border: 1px solid #ddd;
-        }
-
-        code {
-            white-space: pre;
-        }
-
-        .nickname {
-            font-weight: bold;
-        }
-
-        .method-path {
-            font-size: 1.5em;
-            background-color: #0f6ab4;
-        }
-
-        .up {
-            float:right;
-        }
-
-        .parameter {
-            width: 500px;
-        }
-
-        .param {
-            width: 500px;
-            padding: 10px 0 0 20px;
-            font-weight: bold;
-        }
-
-        .param-desc {
-            width: 700px;
-            padding: 0 0 0 20px;
-            color: #777;
-        }
-
-        .param-type {
-            font-style: italic;
-        }
-
-        .param-enum-header {
-            width: 700px;
-            padding: 0 0 0 60px;
-            color: #777;
-            font-weight: bold;
-        }
-
-        .param-enum {
-            width: 700px;
-            padding: 0 0 0 80px;
-            color: #777;
-            font-style: italic;
-        }
-
-        .field-label {
-            padding: 0;
-            margin: 0;
-            clear: both;
-        }
-
-        .field-items	{
-            padding: 0 0 15px 0;
-            margin-bottom: 15px;
-        }
-
-        .return-type {
-            clear: both;
-            padding-bottom: 10px;
-        }
-
-        .param-header {
-            font-weight: bold;
-        }
-
-        .method-tags {
-            text-align: right;
-        }
-
-        .method-tag {
-            background: none repeat scroll 0% 0% #24A600;
-            border-radius: 3px;
-            padding: 2px 10px;
-            margin: 2px;
-            color: #FFF;
-            display: inline-block;
-            text-decoration: none;
-        }
-    </style>
-</head>
-<body>
-<h1>Nonprofit Search API</h1>
-<div class="app-desc">Allows you to quickly search Nonprofit organizations</div>
-<div class="app-desc">Version: 0.1.0</div>
-<div class="app-desc">BasePath:/</div>
-<h2>Access</h2>
-
-<h2><a name="__Methods">Methods</a></h2>
-[ Jump to <a href="#__Models">Models</a> ]
-
-<h2>Table of Contents </h2>
-<div class="method-summary"></div>
-<ol>
-    <li><a href="#apiNonprofitsSearchGet"><code><span class="http-method">get</span> /api/nonprofits/search</code></a></li>
-</ol>
-
-<div class="method"><a name="apiNonprofitsSearchGet"/>
-    <div class="method-path">
-        <a class="up" href="#__Methods">Up</a>
-        <pre class="get"><code class="huge"><span class="http-method">get</span> /api/nonprofits/search</code></pre></div>
-    <div class="method-summary">Searching Nonprofits (<span class="nickname">apiNonprofitsSearchGet</span>)</div>
-    <div class="method-notes">Returns all the organizations of the given query string.  The function considers the name, ein, city and state of the organization. </div>
-
-
-
-
-
-    <h3 class="field-label">Query parameters</h3>
-    <div class="field-items">
-        <div class="param">q (required)</div>
-
-        <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; The query search for the organization </div>
-    </div>  <!-- field-items -->
-
-
-    <h3 class="field-label">Return type</h3>
-    <div class="return-type">
-        <a href="#inline_response_200">inline_response_200</a>
-
-    </div>
-
-    <!--Todo: process Response Object and its headers, schema, examples -->
-
-
-    <h3 class="field-label">Produces</h3>
-    This API call produces the following media types according to the <span class="header">Accept</span> request header;
-    the media type will be conveyed by the <span class="heaader">Content-Type</span> response header.
-    <ul>
-        <li><code>application/json</code></li>
-    </ul>
-
-    <h3 class="field-label">Responses</h3>
-    <h4 class="field-label">200</h4>
-    The results of the search
-    <a href="#inline_response_200">inline_response_200</a>
-</div> <!-- method -->
-<hr/>
-
-<div class="up"><a href="#__Models">Up</a></div>
-<h2><a name="__Models">Models</a></h2>
-[ Jump to <a href="#__Methods">Methods</a> ]
-
-<h2>Table of Contents</h2>
-<ol>
-    <li><a href="#Inline_response_200"><code>Inline_response_200</code></a></li>
-    <li><a href="#Nonprofit"><code>Nonprofit</code></a></li>
-</ol>
-
-<div class="model">
-    <h3 class="field-label"><a name="Inline_response_200">Inline_response_200</a> <a class="up" href="#__Models">Up</a></h3>
-    <div class="field-items">
-        <div class="param">data (optional)</div><div class="param-desc"><span class="param-type"><a href="#Nonprofit">array[Nonprofit]</a></span> </div>
-    </div>  <!-- field-items -->
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Nonprofits API</title>
+		<meta name="description" content="Search Nonprofit organizations">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+		<style>
+			tt, pre, code { font-family: Consolas, "Liberation Mono", Courier, monospace; background-color: transparent !important; }
+			pre.prettyprint { border: 0px !important; background-color: #fff; margin-bottom: -0.5em; }
+			table { width: 100%; border-collapse: collapse; margin-bottom: 1.3em; }
+			th { background: #ededed; }
+			td, th { padding: 6px 9.5px; border: 1px solid #ddd; text-align: left; }
+			tbody tr:nth-of-type(even){ background:rgba(220,220,220,0.2); }
+			.panel-heading h2 { margin-top: 0.5em; }
+			.bg-default { background-color: #F8F8F8; }
+			.snippet { background: #F8F8; list-style: none; display: none; }
+			.snippet-toggle { margin-top: -0.3em; }
+			.panel-body tbody tr td:first-child strong { padding-right: 0.8em; }
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="page-header">
+						<h1>Nonprofits API</h1>
+						<h2><small><p>Search Nonprofit organizations</p>
+</small></h2>
+					</div>
+				</div>
+			</div>
+			<div class="row" style="margin-bottom: 2em;">
+				<div class="col-md-12">
+<ul class="nav nav-pills" id="group-tab">
+	
+		<li><a href="#nonprofits" data-toggle="tab"><strong>Nonprofits</strong></a></li>
+	
+</ul>
 </div>
-<div class="model">
-    <h3 class="field-label"><a name="Nonprofit">Nonprofit</a> <a class="up" href="#__Models">Up</a></h3>
-    <div class="field-items">
-        <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span> the id of the nonprofit in the database.  Not critical as this might change when the data is refreshed</div>
-        <div class="param">ein (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> the ein of the organization.  this is the value that&#39;s needed if query individually.</div>
-        <div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> the name of the organization.</div>
-        <div class="param">city (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> the city in which the organization resides.</div>
-        <div class="param">state (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span> the state in which the organization resides.</div>
-        <div class="param">deductibility_status_code (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">array[String]</a></span> the types of organization it is.  The value will always return an array, even if the organization is only one type of org.</div>
-    </div>  <!-- field-items -->
+			</div>
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 col-md-12">
+					<div class="tab-content">
+
+	<div class="tab-pane" id="nonprofits">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h2 id="nonprofits">Nonprofits</h2>
+			</div>
+			<div class="panel-body">
+				<p class="lead"><small></small></p>
+				
+
+	
+	
+	
+	<div class="panel panel-info">
+		<div class="panel-heading">
+			<span class="btn btn-primary">GET</span>
+			<code>/api/nonprofits/search{?q}</code>
+		</div>
+		<div class="panel-body">
+			<p>Retrieves the coupon with the given ID.</p>
+
+		</div>
+		<ul class="list-group">
+			
+				<li class="list-group-item bg-default"><strong>Parameters</strong></li>
+				<li class="list-group-item">
+<dl class="dl-horizontal">
+	
+		<dt>q</dt>
+		<dd>
+		
+			<strong>(required)</strong>
+		
+		<code>string</code> Search Query for the nonprofits
+
+		</dd>
+	
+</dl>
+</li>
+			
+			
+	
+		
+	
+
+		
+	
+		<li class="list-group-item bg-default response">
+			<strong>Response <code>200</code></strong>
+			<a href="javascript:;" class="pull-right btn btn-link btn-sm snippet-toggle">SHOW</a>
+		</li>
+		<li class="list-group-item snippet">
+			
+				<code>&lt; Content-Type: application/json</code><br>
+			
+			
+				<pre class="prettyprint">{
+  &#34;data&#34;: [
+    {
+      &#34;id&#34;: 25,
+      &#34;ein&#34;: &#34;0012343&#34;,
+      &#34;name&#34;: &#34;Chicago Art House&#34;,
+      &#34;city&#34;: &#34;Chicago&#34;,
+      &#34;state&#34;: &#34;IL&#34;,
+      &#34;deductibility_status_code&#34;: [
+        &#34;PE&#34;,
+        &#34;SOUNK&#34;
+      ]
+    }
+  ]
+}</pre>
+			
+		</li>
+	
+
+	
+
+		</ul>
+	</div>
+	
+
+
+			</div>
+		</div>
+	</div>
+
 </div>
-</body>
+				</div>
+			</div>
+		</div>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
+		<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+		<script>
+			jQuery(function($) {
+ 				$('#group-tab a[data-toggle="tab"]').on("click", function(e) {
+ 					window.location.hash = $(this).attr("href");
+ 				});
+
+ 				if(window.location.hash){
+ 					$('#group-tab a:first').tab('show');
+ 					$('#group-tab a[href$="'+ window.location.hash +'"]').tab("show");
+ 				} else {
+ 					$('#group-tab a:first').tab('show');
+ 				}
+
+				$('.snippet-toggle').on("click", function(e) {
+					e.preventDefault();
+					var target = $(this).data('target');
+					$(this).parent().next().toggle();
+					if ($(this).text() == "SHOW") {
+						$(this).text("HIDE");
+					} else {
+						$(this).text("SHOW");
+					}
+				});
+			});
+		</script>
+	</body>
 </html>
+
+
+
+
+
+
