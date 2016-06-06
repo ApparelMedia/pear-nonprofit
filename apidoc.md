@@ -5,7 +5,7 @@ Search Nonprofit organizations
 
 # Group Nonprofits
 
-## Search Nonprofits [/api/nonprofits/search{?q}]
+## Search Nonprofits [GET /api/nonprofits/search{?q}]
 Searches nonprofits given partial names, or city, or state, or ein or any combinations of them.
 
 + Parameters
@@ -15,13 +15,6 @@ Searches nonprofits given partial names, or city, or state, or ein or any combin
 
 + Response 200 (application/json)
     + Attributes (array[Nonprofit])
-
-### Retrieve a Coupon [GET]
-Retrieves the coupon with the given ID.
-
-+ Response 200 (application/json)
-    + Attributes 
-      + data (array[Nonprofit])
 
 # Data Structures
 

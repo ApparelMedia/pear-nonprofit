@@ -62,26 +62,10 @@
 			<code>/api/nonprofits/search{?q}</code>
 		</div>
 		<div class="panel-body">
-			<p>Retrieves the coupon with the given ID.</p>
+			<p>Searches nonprofits given partial names, or city, or state, or ein or any combinations of them.</p>
 
 		</div>
 		<ul class="list-group">
-			
-				<li class="list-group-item bg-default"><strong>Parameters</strong></li>
-				<li class="list-group-item">
-<dl class="dl-horizontal">
-	
-		<dt>q</dt>
-		<dd>
-		
-			<strong>(required)</strong>
-		
-		<code>string</code> Search Query for the nonprofits
-
-		</dd>
-	
-</dl>
-</li>
 			
 			
 	
@@ -99,21 +83,19 @@
 				<code>&lt; Content-Type: application/json</code><br>
 			
 			
-				<pre class="prettyprint">{
-  &#34;data&#34;: [
-    {
-      &#34;id&#34;: 25,
-      &#34;ein&#34;: &#34;0012343&#34;,
-      &#34;name&#34;: &#34;Chicago Art House&#34;,
-      &#34;city&#34;: &#34;Chicago&#34;,
-      &#34;state&#34;: &#34;IL&#34;,
-      &#34;deductibility_status_code&#34;: [
-        &#34;PE&#34;,
-        &#34;SOUNK&#34;
-      ]
-    }
-  ]
-}</pre>
+				<pre class="prettyprint">[
+  {
+    &#34;id&#34;: 25,
+    &#34;ein&#34;: &#34;0012343&#34;,
+    &#34;name&#34;: &#34;Chicago Art House&#34;,
+    &#34;city&#34;: &#34;Chicago&#34;,
+    &#34;state&#34;: &#34;IL&#34;,
+    &#34;deductibility_status_code&#34;: [
+      &#34;PE&#34;,
+      &#34;SOUNK&#34;
+    ]
+  }
+]</pre>
 			
 		</li>
 	
