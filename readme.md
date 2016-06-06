@@ -1,4 +1,4 @@
-![test-status](https://codeship.com/projects/156326/status?branch=master)
+![test-status](https://codeship.com/projects/83b4b1d0-0e3c-0134-37ff-663a1105f325/status?branch=master)
 
 ## Pear Nonprofit Org Search API Proof-of-concept
 
