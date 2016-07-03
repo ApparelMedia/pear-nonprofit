@@ -18,16 +18,6 @@ class FileDatabaseProcessor
     }
 
     protected function getPdo() {
-//        if ($this->pdo) return $this->pdo;
-//
-//        $host = env('DB_HOST');
-//        $port = env('DB_PORT');
-//        $dbname = env('DB_DATABASE');
-//        $user = env('DB_USERNAME');
-//        $pass = env('DB_PASSWORD');
-//
-//        $this->pdo = new \PDO("pgsql:host=$host;port=$port;dbname=$dbname", $user, $pass);
-
         return $this->pdo;
     }
 
@@ -45,7 +35,7 @@ class FileDatabaseProcessor
                 return $pdo->quote($value);
             }, $row);
 
-            $processedSql = 'INSERT INTO nonprofits (ein, name, city, state, country, deductibility_status_code, nonprofit_vector) VALUES ('
+            $processedSql = 'INSERT INTO nonprofits_staging (ein, name, city, state, country, deductibility_status_code, nonprofit_vector) VALUES ('
                 . $rowValues[0] . ','
                 . $rowValues[1] . ','
                 . $rowValues[2] . ','

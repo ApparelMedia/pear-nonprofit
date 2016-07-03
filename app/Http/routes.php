@@ -18,29 +18,7 @@ $getOrgsJson = function ($orgs) {
 };
 
 $app->get('/', function () use ($app) {
-    $hotLoader = '';
-    if (env('APP_ENV') === 'local') {
-        $hotLoader = '<script src="http://nonprofit.app:3000/webpack-dev-server.js"></script>';
-    }
-    return view('home', compact('hotLoader'));
-});
-
-$app->get('/test', function () {
-    return 'here!!!';
-});
-
-$app->get('/api/dispatch', function () use ($app) {
-    dispatch(new \App\Jobs\LoadNonprofitTableJob(config('data.filePath')));
-});
-
-$app->get('/api/upload', function () use ($app) {
-    $csv = new \App\Processors\FileProcessor(config('data.filePath'), 0, 100);
-    $csv->importToDatabase();
-});
-
-$app->get('/api/nonprofits', function () use ($app, $getOrgsJson) {
-    $orgs = \App\Nonprofit::all();
-    return json($getOrgsJson($orgs));
+    return view('home');
 });
 
 $app->get('/api/nonprofits/search', function () use ($app, $getOrgsJson) {
@@ -49,8 +27,6 @@ $app->get('/api/nonprofits/search', function () use ($app, $getOrgsJson) {
     $tsQuery = 'to_tsquery(\'' . $query . '\')';
 
     $orgs = \App\Nonprofit::whereRaw('nonprofit_vector @@ ' . $tsQuery)->orderByRaw('ts_rank_cd( nonprofit_vector,' . $tsQuery . ') desc')->limit(100)->get();
-//    $orgs = $app->make('db')->select('SELECT * FROM nonprofits WHERE document_text @@ to_tsquery(\'' . $query . '\')'); // or to_tsvector(city) @@ to_tsquery(\'' . $query . ':*\') ');
-//    return var_dump($orgs);
     return json($getOrgsJson($orgs));
 });
 

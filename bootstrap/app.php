@@ -81,6 +81,7 @@ $app->singleton(
 // $app->register(App\Providers\AppServiceProvider::class);
 // $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
+$app->register(\Illuminate\Mail\MailServiceProvider::class);
 $app->register(\Bosnadev\Database\DatabaseServiceProvider::class);
 
 /*
@@ -103,5 +104,8 @@ if (!ini_get("auto_detect_line_endings")) {
 }
 
 $app->configure('data');
+$app->configure('mail');
+
+$app->instance(Illuminate\Contracts\Mail\Mailer::class, app('mailer'));
 
 return $app;

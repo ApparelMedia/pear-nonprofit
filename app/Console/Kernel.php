@@ -16,6 +16,8 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         Commands\DataReloadNonprofitTable::class,
         Commands\DataDownloadNonprofitFile::class,
+        Commands\DataRenameNonprofitTable::class,
+        Commands\DataImportFromSource::class,
     ];
 
     /**
@@ -26,6 +28,10 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        //
+        $schedule->command('data:import')
+            ->withoutOverlapping()
+            ->daily()
+            ->sendOutputTo(storage_path('logs/cli-output.txt'))
+            ->emailOutputTo('howlowck@gmail.com');
     }
 }
