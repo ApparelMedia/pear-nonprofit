@@ -21,6 +21,11 @@ $app->get('/', function () use ($app) {
     return view('home');
 });
 
+$app->get('/api/nonprofits', function () use ($app, $getOrgsJson) {
+    $orgs = \App\Nonprofit::all();
+    return json($getOrgsJson($orgs));
+});
+
 $app->get('/api/nonprofits/search', function () use ($app, $getOrgsJson) {
     $query = $app->make('request')->query('q');
     $query = str_replace(' ', ' & ', $query);
