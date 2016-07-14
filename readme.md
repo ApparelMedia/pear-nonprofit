@@ -34,5 +34,18 @@ To fix the problem, you would need to disable xdebug (which is by default enable
 3. save and quit vim
 When you run the command again, it should work.
 
-### TODO
-* Add API Documentation
+### Deployment
+This app uses [Deployer](http://deployer.org/), a zero-downtime deployment tool written in PHP and **heavily** inspired by Ruby's Capistrano.  
+You can check out `deploy.php` to see what is involved.
+
+Install Deployer by running `composer global require deployer/deployer:~4.0@dev herzult/php-ssh`  
+Now when you run `dep`, you should see a wealth of commands you can run to manage your deployments.  
+You'll also need to set up your `~/.ssh/config` for the servers like so:
+```
+Host prod1.nonprofit
+    HostName prod.host.example.com
+    User someuser
+    IdentityFile /home/vagrant/.ssh/id_rsa
+```
+
+To deploy, you can run `dep deploy` to deploy to staging, and `dep deploy production` to deploy to production

@@ -1,15 +1,13 @@
-<?php
-/*
- * This file has been generated automatically.
- * Please change the configuration for correct use deploy.
- */
+<?php namespace Deployer;
 
 require 'recipe/laravel.php';
 
 set('ssh_type', 'ext-ssh2');
+set('default_stage', 'staging');
 
 // Set configurations
 set('repository', 'git@github.com:ApparelMedia/pear-nonprofit-api.git');
+set('writable_dirs', ['storage']);
 set('shared_files', ['.env']);
 set('shared_dirs', [
     'storage/app',
@@ -19,19 +17,29 @@ set('shared_dirs', [
     'storage/logs',
 ]);
 
-set('writable_dirs', ['storage']);
+task('copy:dotenv', function () {
+    $sourceDotEnv = '/opt/pear/shared/.env.' . env('stage_name');
+    $targetDotEnv = env('deploy_path') .'/shared/.env';
+    run("cp $sourceDotEnv $targetDotEnv");
+})->desc('Copying .env file from source of truth');
+
+after('deploy:symlink', 'copy:dotenv');
 
 // Configure servers
-server('production', 'metro')->configFile();
 
-/**
- * Restart php-fpm on success deploy.
- */
-task('php-fpm:restart', function () {
-    // Attention: The user must have rights for restart service
-    // Attention: the command "sudo /bin/systemctl restart php-fpm.service" used only on CentOS system
-    // /etc/sudoers: username ALL=NOPASSWD:/bin/systemctl restart php-fpm.service
-    run('sudo /bin/systemctl restart php-fpm.service');
-})->desc('Restart PHP-FPM service');
+// Production Server
+$stageName = 'production';
+server('prod1', 'prod1.nonprofit')
+    ->configFile('/home/vagrant/.ssh/config')
+    ->env('deploy_path', '/var/www/nonprofits-api')
+    ->env('stage_name', $stageName)
+    ->stage($stageName);
 
-after('success', 'php-fpm:restart');
+// Staging Server
+$stageName = 'staging';
+server('stage1', 'stage1.nonprofit')
+    ->configFile('/home/vagrant/.ssh/config')
+    ->env('deploy_path', '/var/www/nonprofits-api')
+    ->env('stage_name', $stageName)
+    ->stage($stageName);
+

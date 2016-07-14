@@ -27,13 +27,18 @@ class DataImportFromSource extends Command
     {
         $this->call('data:downloadFile');
         $this->info('downloaded csv file');
+
         $this->call('data:reloadStagingTable', ['--force' => true]);
         $count = app('db')->connection()->query()->from('nonprofits_staging')->count();
         $this->info('Reloaded staging table with ' . $count . ' rows');
+
         $this->call('data:renameTable');
         $this->info('renamed staging table to prod table');
+
         $executionTime = ceil(microtime(true) - $_SERVER['REQUEST_TIME_FLOAT']);
         $minutes = $executionTime / 60;
-        $this->info("The entire process took $executionTime seconds or ({$minutes} minutes) to complete.");
+        $finalNotification = "The entire process took $executionTime seconds or ({$minutes} minutes) to complete";
+        $this->info($finalNotification);
+        app('log')->info($finalNotification);
     }
 }
