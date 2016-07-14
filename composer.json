@@ -16,7 +16,6 @@
         "vluzrmos/lumen-cors": "^2.1",
         "illuminate/mail": "^5.2",
         "guzzlehttp/guzzle": "~5.3|~6.0",
-        "herzult/php-ssh": "^1.1",
         "rollbar/rollbar": "^0.18.2"
     },
     "require-dev": {
