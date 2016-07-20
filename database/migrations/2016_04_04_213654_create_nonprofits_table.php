@@ -20,9 +20,9 @@ class CreateNonprofitsTable extends Migration
             $table->string('state');
             $table->string('country');
             $table->string('deductibility_status_code');
-            $table->tsvector('nonprofit_vector');
-            $table->gin('nonprofit_vector');
         });
+
+        DB::statement('ALTER TABLE nonprofits ADD FULLTEXT nonprofit_vector(name, city, ein)');
 
     }
 
@@ -33,6 +33,10 @@ class CreateNonprofitsTable extends Migration
      */
     public function down()
     {
+        Schema::table('nonprofits', function($table) {
+            $table->dropIndex('nonprofit_search');
+        });
+
         Schema::drop('nonprofits');
     }
 }
