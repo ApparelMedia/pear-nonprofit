@@ -12,11 +12,6 @@ class FileDatabaseProcessor
         $this->pdo = $pdo;
     }
 
-    protected function getVectorExpression(array $data, $pdo) {
-        $vectorValue = implode(' || \' \' || ', $data);
-        return 'to_tsvector(' . $vectorValue . ')';
-    }
-
     protected function getPdo() {
         return $this->pdo;
     }
@@ -35,16 +30,16 @@ class FileDatabaseProcessor
                 return $pdo->quote($value);
             }, $row);
 
-            $processedSql = 'INSERT INTO nonprofits_staging (ein, name, city, state, country, deductibility_status_code, nonprofit_vector) VALUES ('
+            $processedSql = 'INSERT INTO nonprofits_staging (ein, name, city, state, country, deductibility_status_code) VALUES ('
                 . $rowValues[0] . ','
                 . $rowValues[1] . ','
                 . $rowValues[2] . ','
                 . $rowValues[3] . ','
                 . $rowValues[4] . ','
-                . $rowValues[5] . ','
-                . $this->getVectorExpression([$rowValues[1], $rowValues[2], $rowValues[3], $rowValues[0]], $pdo) . ')';
+                . $rowValues[5] . ')';
 
             $pdo->exec($processedSql);
+
             if (is_callable($afterEach)) {
                 $afterEach($i);
             }

@@ -4,9 +4,61 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "015f17ff43833149d4c97ec270f5175d",
-    "content-hash": "91636736a80cb1a0493ac60bb2d768db",
+    "hash": "7099be0bf0809abaa7eab0b302c4360f",
+    "content-hash": "3827c1c69ecaa3e565c4bc5796f3cb14",
     "packages": [
+        {
+            "name": "axisofstevil/stop-words",
+            "version": "0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/axisofstevil/stop-words.git",
+                "reference": "324298905c837e2cf95721d007f9440d5d763e04"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/axisofstevil/stop-words/zipball/324298905c837e2cf95721d007f9440d5d763e04",
+                "reference": "324298905c837e2cf95721d007f9440d5d763e04",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.*"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Axisofstevil\\StopWords\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": ":Steven Maguire",
+                    "email": "stevenmaguire@gmail.com",
+                    "homepage": "http://stevenmaguire.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A library for managing and filtering text with stop words",
+            "homepage": "https://github.com/axisofstevil/stop-words",
+            "keywords": [
+                "filtering",
+                "package",
+                "stop words"
+            ],
+            "time": "2014-12-29 22:47:56"
+        },
         {
             "name": "bosnadev/database",
             "version": "0.16",

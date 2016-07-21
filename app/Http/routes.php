@@ -28,10 +28,23 @@ $app->get('/api/nonprofits', function () use ($app, $getOrgsJson) {
 
 $app->get('/api/nonprofits/search', function () use ($app, $getOrgsJson) {
     $query = $app->make('request')->query('q');
-    $query = str_replace(' ', ' & ', $query);
-    $tsQuery = 'to_tsquery(\'' . $query . '\')';
+    $queries = explode(' ', $query);
+    
+    $processedQuery = implode(' ', array_map(function ($query) {
+        $query = strtolower($query);
+        if (in_array($query,\Axisofstevil\StopWords\Words::$basic_words)) {
+            return $query;
+        }
+        return '+' . $query;
+    }, $queries));
 
-    $orgs = \App\Nonprofit::whereRaw('nonprofit_vector @@ ' . $tsQuery)->orderByRaw('ts_rank_cd( nonprofit_vector,' . $tsQuery . ') desc')->limit(100)->get();
+    $matchExp = 'MATCH(name,city,ein) AGAINST(\'' . $processedQuery . '\' IN BOOLEAN MODE)';
+    app('log')->info($matchExp);
+    $orgs = \App\Nonprofit::selectRaw('*, ' . $matchExp . ' as score')
+        ->whereRaw($matchExp)
+        ->orderBy('score', 'desc')
+        ->limit(100)
+        ->get();
     return json($getOrgsJson($orgs));
 });
 

@@ -16,7 +16,8 @@
         "vluzrmos/lumen-cors": "^2.1",
         "illuminate/mail": "^5.2",
         "guzzlehttp/guzzle": "~5.3|~6.0",
-        "rollbar/rollbar": "^0.18.2"
+        "rollbar/rollbar": "^0.18.2",
+        "axisofstevil/stop-words": "^0.1.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
