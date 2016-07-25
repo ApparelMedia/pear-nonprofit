@@ -22,7 +22,7 @@ class CreateNonprofitsStagingTable extends Migration
             $table->string('deductibility_status_code');
         });
 
-        DB::statement('ALTER TABLE nonprofits_staging ADD FULLTEXT nonprofit_vector(name, city, ein)');
+        DB::statement('ALTER TABLE nonprofits_staging ADD FULLTEXT nonprofit_vector_staging(name, city, ein)');
     }
 
     /**
@@ -32,10 +32,6 @@ class CreateNonprofitsStagingTable extends Migration
      */
     public function down()
     {
-        Schema::table('nonprofits_staging', function($table) {
-            $table->dropIndex('nonprofit_search');
-        });
-
         Schema::drop('nonprofits_staging');
     }
 }

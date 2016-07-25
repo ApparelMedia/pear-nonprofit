@@ -33,10 +33,6 @@ class CreateNonprofitsTable extends Migration
      */
     public function down()
     {
-        Schema::table('nonprofits', function($table) {
-            $table->dropIndex('nonprofit_search');
-        });
-
         Schema::drop('nonprofits');
     }
 }
