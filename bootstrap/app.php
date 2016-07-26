@@ -102,24 +102,24 @@ $app->group(['namespace' => 'App\Http\Controllers'], function ($app) {
 if (!ini_get("auto_detect_line_endings")) {
     ini_set("auto_detect_line_endings", '1');
 }
-
+$app->configure('database');
 $app->configure('data');
 $app->configure('mail');
 
 $app->instance(Illuminate\Contracts\Mail\Mailer::class, app('mailer'));
 
-//$app->configureMonologUsing(function(\Monolog\Logger $monolog) {
-//
-//    $config = [
-//        'access_token' => env('ROLLBAR_ACCESS_TOKEN'),
-//        'environment' => env('APP_ENV'),
-//    ];
-//
-//    Rollbar::init($config);
-//    $rollbar = new Monolog\Handler\RollbarHandler(Rollbar::$instance, \Monolog\Logger::INFO);
-//
-//    $monolog->pushHandler($rollbar);
-//    return $monolog;
-//});
+$app->configureMonologUsing(function(\Monolog\Logger $monolog) {
+
+    $config = [
+        'access_token' => env('NONPROFIT_ROLLBAR_ACCESS_TOKEN'),
+        'environment' => env('NONPROFIT_APP_ENV'),
+    ];
+
+    Rollbar::init($config);
+    $rollbar = new Monolog\Handler\RollbarHandler(Rollbar::$instance, \Monolog\Logger::INFO);
+
+    $monolog->pushHandler($rollbar);
+    return $monolog;
+});
 
 return $app;

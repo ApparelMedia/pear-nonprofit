@@ -18,7 +18,7 @@ set('shared_dirs', [
 ]);
 
 task('copy:dotenv', function () {
-    $sourceDotEnv = '/opt/pear/shared/.env.' . env('stage_name');
+    $sourceDotEnv = '/opt/microservices/shared/.env.' . env('stage_name');
     $targetDotEnv = env('deploy_path') .'/shared/.env';
     run("cp $sourceDotEnv $targetDotEnv");
 })->desc('Copying .env file from source of truth');

@@ -1,6 +1,6 @@
 <?php
 return [
     'mandrill' => [
-        'secret' => env('MANDRILL_SECRET'),
+        'secret' => env('NONPROFIT_MANDRILL_SECRET'),
     ],
 ];
