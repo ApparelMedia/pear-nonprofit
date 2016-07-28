@@ -39,7 +39,6 @@ $app->get('/api/nonprofits/search', function () use ($app, $getOrgsJson) {
     }, $queries));
 
     $matchExp = 'MATCH(name,city,ein) AGAINST(\'' . $processedQuery . '\' IN BOOLEAN MODE)';
-    app('log')->info($matchExp);
     $orgs = \App\Nonprofit::selectRaw('*, ' . $matchExp . ' as score')
         ->whereRaw($matchExp)
         ->orderBy('score', 'desc')
