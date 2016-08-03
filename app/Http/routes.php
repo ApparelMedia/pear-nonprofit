@@ -21,11 +21,23 @@ $app->get('/', function () use ($app) {
     return view('home');
 });
 
-$app->get('/test/route', function () {
+$app->get('/test/route', function () use ($app) {
+    $message = "✔️ Clean Url is working (because you see this message) <br>";
+
     if (!extension_loaded('zip')) {
-        return 'clean url is working (because you see this message) but PHP Zip extension is not loaded';
+        $message .= "❌ PHP Zip extension is not loaded <br>";
+    } else {
+        $message .= "✔️ PHP Zip extension is loaded <br>";
     }
-    return 'clean url and PHP Zip Extension is working!';
+
+    if( ! app('db')->connection()->getDatabaseName())
+    {
+        $message .= "❌ DB isn't connected <br>";
+    } else {
+        $message .= "✔️ DB is connected to " . app('db')->connection()->getDatabaseName() . ". <br>";
+    }
+
+    return view('basic', ['content' => $message]);
 });
 
 $app->get('/api/nonprofits', function () use ($app, $getOrgsJson) {
