@@ -18,14 +18,12 @@ set('shared_dirs', [
 ]);
 
 task('copy:dotenv', function () {
-    $sourceDotEnv = '/opt/microservices/shared/.env.' . env('stage_name');
+    $sourceDotEnv = '/opt/pear-nonprofit-api/shared/.env.' . env('stage_name');
     $targetDotEnv = env('deploy_path') .'/shared/.env';
     run("cp $sourceDotEnv $targetDotEnv");
-})->desc('Copying .env file from source of truth');
+})->desc('Copying .env file from file published by CI WebOps');
 
 after('deploy:symlink', 'copy:dotenv');
-
-// Configure servers
 
 // Production Server
 $stageName = 'production';
@@ -39,7 +37,7 @@ server('prod1', 'prod1.nonprofit')
 $stageName = 'staging';
 server('stage1', 'stage1.nonprofit')
     ->configFile('/home/vagrant/.ssh/config')
-    ->env('deploy_path', '/var/www/nonprofits-api')
+    ->env('deploy_path', '/opt/pear-nonprofit-api')
     ->env('stage_name', $stageName)
     ->stage($stageName);
 
