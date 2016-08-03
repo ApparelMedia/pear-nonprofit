@@ -21,6 +21,13 @@ $app->get('/', function () use ($app) {
     return view('home');
 });
 
+$app->get('/test/route', function () {
+    if (!extension_loaded('zip')) {
+        return 'clean url is working (because you see this message) but PHP Zip extension is not loaded';
+    }
+    return 'clean url and PHP Zip Extension is working!';
+});
+
 $app->get('/api/nonprofits', function () use ($app, $getOrgsJson) {
     $orgs = \App\Nonprofit::all();
     return json($getOrgsJson($orgs));
