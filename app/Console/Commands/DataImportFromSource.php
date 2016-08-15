@@ -27,8 +27,9 @@ class DataImportFromSource extends Command
     {
         $this->call('data:downloadFile');
         $this->info('downloaded csv file');
-
-        $this->call('data:reloadStagingTable', ['--force' => true]);
+        $this->call('data:generateSqlFile');
+        $this->info('generated Batch Sql File');
+        $this->call('data:batchReloadTable', ['--force' => true]);
         $count = app('db')->connection()->query()->from('nonprofits_staging')->count();
         $this->info('Reloaded staging table with ' . $count . ' rows');
 
