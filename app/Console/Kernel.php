@@ -18,6 +18,8 @@ class Kernel extends ConsoleKernel
         Commands\DataDownloadNonprofitFile::class,
         Commands\DataRenameNonprofitTable::class,
         Commands\DataImportFromSource::class,
+        Commands\DataGenerateBatchSqlFile::class,
+        Commands\DataBatchReloadTable::class,
     ];
 
     /**
