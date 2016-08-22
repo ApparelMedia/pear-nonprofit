@@ -34,6 +34,6 @@ class Kernel extends ConsoleKernel
             ->withoutOverlapping()
             ->daily()
             ->sendOutputTo(storage_path('logs/cli-output.txt'))
-            ->emailOutputTo('howlowck@gmail.com');
+            ->emailOutputTo(config('data.notificationEmail'));
     }
 }
