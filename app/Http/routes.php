@@ -21,7 +21,7 @@ $app->get('/', function () use ($app) {
     return view('home');
 });
 
-$app->get('/test/route', function () use ($app) {
+$app->get('/test', function () use ($app) {
     $message = "✔️ Clean Url is working (because you see this message) <br>";
 
     if (!extension_loaded('zip')) {
@@ -34,7 +34,7 @@ $app->get('/test/route', function () use ($app) {
     {
         $message .= "❌ DB isn't connected <br>";
     } else {
-        $message .= "✔️ DB is connected to " . app('db')->connection()->getDatabaseName() . ". <br>";
+        $message .= "✔️ DB name is " . app('db')->connection()->getDatabaseName() . ". <br>";
     }
 
     return view('basic', ['content' => $message]);

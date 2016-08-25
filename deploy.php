@@ -8,6 +8,7 @@ set('default_stage', 'staging');
 // Set configurations
 set('repository', 'git@github.com:ApparelMedia/pear-nonprofit-api.git');
 set('writable_dirs', ['storage']);
+set('writable_use_sudo', false);
 set('shared_files', ['.env']);
 set('shared_dirs', [
     'storage/app',
@@ -25,19 +26,38 @@ task('copy:dotenv', function () {
 
 after('deploy:symlink', 'copy:dotenv');
 
+/**
+ * Main task (Overwritting Default Laravel Task
+ */
+task('deploy', [
+    'deploy:prepare',
+    'deploy:release',
+    'deploy:update_code',
+    'deploy:shared',
+    'deploy:vendors',
+    'deploy:writable',
+    'deploy:symlink',
+    'cleanup',
+    'artisan:cache:clear',
+])->desc('Deploy your project');
+
 // Production Server
-$stageName = 'production';
 server('prod1', 'prod1.nonprofit')
     ->configFile('/home/vagrant/.ssh/config')
-    ->env('deploy_path', '/var/www/nonprofits-api')
-    ->env('stage_name', $stageName)
-    ->stage($stageName);
+    ->env('deploy_path', '/opt/pear-nonprofit-api')
+    ->env('stage_name', 'production')
+    ->stage('production');
+
+server('prod2', 'prod2.nonprofit')
+    ->configFile('/home/vagrant/.ssh/config')
+    ->env('deploy_path', '/opt/pear-nonprofit-api')
+    ->env('stage_name', 'production')
+    ->stage('production');
 
 // Staging Server
-$stageName = 'staging';
 server('stage1', 'stage1.nonprofit')
     ->configFile('/home/vagrant/.ssh/config')
     ->env('deploy_path', '/opt/pear-nonprofit-api')
-    ->env('stage_name', $stageName)
-    ->stage($stageName);
+    ->env('stage_name', 'staging')
+    ->stage('staging');
 
