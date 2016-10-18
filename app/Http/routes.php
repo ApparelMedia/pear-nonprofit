@@ -21,6 +21,15 @@ $app->get('/', function () use ($app) {
     return view('home');
 });
 
+$app->get('/cache/clear', function () use ($app) {
+    if (function_exists('opcache_reset')) {
+        opcache_reset();
+        $name = gethostname();
+        return ":) Opcache Cleared (for $name)";
+    }
+    return "Opcache is not enabled for this server";
+});
+
 $app->get('/test', function () use ($app) {
     $message = "✔️ Clean Url is working (because you see this message) <br>";
 
