@@ -27,7 +27,7 @@ Validates an EIN input to see if it corresponds to a nonprofit
       
 + Response 200 (application/json)
     + Attributes (object)
-        + data (array[Validation])
+        + data (Validation)
 
 # Data Structures
 
