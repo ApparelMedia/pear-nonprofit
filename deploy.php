@@ -24,6 +24,11 @@ task('copy:dotenv', function () {
     run("cp $sourceDotEnv $targetDotEnv");
 })->desc('Copying .env file from file published by CI WebOps');
 
+task('artisan:data:import', function () {
+    $output = run('{{bin/php}} {{deploy_path}}/current/artisan data:import');
+    writeln('<info>'.$output.'</info>');
+})->desc('Import Data from the IRS Website To Our Database')->onlyOn(['stage1','prod1']);
+
 after('deploy:symlink', 'copy:dotenv');
 
 /**
@@ -39,6 +44,7 @@ task('deploy', [
     'deploy:symlink',
     'cleanup',
     'artisan:cache:clear',
+    'success',
 ])->desc('Deploy your project');
 
 // Production Server
@@ -60,4 +66,3 @@ server('stage1', 'stage1.nonprofit')
     ->env('deploy_path', '/opt/pear-nonprofit-api')
     ->env('stage_name', 'staging')
     ->stage('staging');
-

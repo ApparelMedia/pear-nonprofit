@@ -66,3 +66,8 @@ $app->get('/api/nonprofits/search', function () use ($app, $getOrgsJson) {
     return json($getOrgsJson($orgs));
 });
 
+$app->get('api/nonprofits/validate/ein', function () use ($app) {
+    $ein = $app->make('request')->query('q');
+    $orgExists = \App\Nonprofit::query()->where('ein', $ein)->exists();
+    return json(['data' => ['valid' => $orgExists]]);
+});

@@ -49,3 +49,9 @@ Host prod1.nonprofit
 ```
 
 To deploy, you can run `dep deploy` to deploy to staging, and `dep deploy production` to deploy to production
+
+### Generating the Docs
+It's using [API Blueprint](https://apiblueprint.org/) and [`aglio`](https://github.com/danielgtaylor/aglio) tool to generate the api documentation.  
+To change the API docs, go to `apidoc.md` at the root of the project.  
+Then run `aglio -i apidoc.md -o resources/views/home.blade.php
+`
