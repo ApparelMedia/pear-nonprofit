@@ -19,8 +19,8 @@ set('shared_dirs', [
 ]);
 
 task('copy:dotenv', function () {
-    $sourceDotEnv = '/opt/pear-nonprofit-api/shared/.env.' . env('stage_name');
-    $targetDotEnv = env('deploy_path') .'/shared/.env';
+    $sourceDotEnv = get('deploy_path') . '/shared/.env.' . get('stage_name');
+    $targetDotEnv = get('deploy_path') . '/shared/.env';
     run("cp $sourceDotEnv $targetDotEnv");
 })->desc('Copying .env file from file published by CI WebOps');
 
@@ -49,20 +49,20 @@ task('deploy', [
 
 // Production Server
 server('prod1', 'prod1.nonprofit')
-    ->configFile('/home/vagrant/.ssh/config')
-    ->env('deploy_path', '/opt/pear-nonprofit-api')
-    ->env('stage_name', 'production')
+    ->configFile('~/.ssh/config')
+    ->set('deploy_path', '/opt/pear-nonprofit-api')
+    ->set('stage_name', 'production')
     ->stage('production');
 
 server('prod2', 'prod2.nonprofit')
-    ->configFile('/home/vagrant/.ssh/config')
-    ->env('deploy_path', '/opt/pear-nonprofit-api')
-    ->env('stage_name', 'production')
+    ->configFile('~/.ssh/config')
+    ->set('deploy_path', '/opt/pear-nonprofit-api')
+    ->set('stage_name', 'production')
     ->stage('production');
 
 // Staging Server
 server('stage1', 'stage1.nonprofit')
-    ->configFile('/home/vagrant/.ssh/config')
-    ->env('deploy_path', '/opt/pear-nonprofit-api')
-    ->env('stage_name', 'staging')
+    ->configFile('~/.ssh/config')
+    ->set('deploy_path', '/opt/pear-nonprofit-api')
+    ->set('stage_name', 'staging')
     ->stage('staging');
